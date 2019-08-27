@@ -3,7 +3,6 @@ import { ArticleEntity } from './article.entity';
 
 @Entity()
 export class Comment {
-
   @PrimaryGeneratedColumn()
   id: number;
 

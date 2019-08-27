@@ -1,10 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany, JoinColumn, AfterUpdate, BeforeUpdate } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  ManyToOne,
+  OneToMany,
+  JoinColumn,
+  AfterUpdate,
+  BeforeUpdate,
+} from 'typeorm';
 import { UserEntity } from '../user/user.entity';
 import { Comment } from './comment.entity';
 
 @Entity('article')
 export class ArticleEntity {
-
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -14,21 +23,21 @@ export class ArticleEntity {
   @Column()
   title: string;
 
-  @Column({default: ''})
+  @Column({ default: '' })
   description: string;
 
-  @Column({default: ''})
+  @Column({ default: '' })
   body: string;
 
-  @Column({ type: 'timestamp', default: () => "CURRENT_TIMESTAMP"})
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created: Date;
 
-  @Column({ type: 'timestamp', default: () => "CURRENT_TIMESTAMP"})
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updated: Date;
 
   @BeforeUpdate()
   updateTimestamp() {
-    this.updated = new Date;
+    this.updated = new Date();
   }
 
   @Column('simple-array')
@@ -37,10 +46,10 @@ export class ArticleEntity {
   @ManyToOne(type => UserEntity, user => user.articles)
   author: UserEntity;
 
-  @OneToMany(type => Comment, comment => comment.article, {eager: true})
+  @OneToMany(type => Comment, comment => comment.article, { eager: true })
   @JoinColumn()
   comments: Comment[];
 
-  @Column({default: 0})
+  @Column({ default: 0 })
   favoriteCount: number;
 }

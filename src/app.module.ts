@@ -13,12 +13,10 @@ import { TagModule } from './tag/tag.module';
     ArticleModule,
     UserModule,
     ProfileModule,
-    TagModule
+    TagModule,
   ],
-  controllers: [
-    AppController
-  ],
-  providers: []
+  controllers: [AppController],
+  providers: [],
 })
 export class ApplicationModule {
   constructor(private readonly connection: Connection) {}
